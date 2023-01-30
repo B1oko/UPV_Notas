@@ -1,0 +1,20 @@
+{
+	"name": "UPV Notas",
+	"description": "Mejora la visualizacion de las calificaciones en el apartado de notas de la intranet. (Extension no oficial)",
+	"version": "1.0",
+	"manifest_version": 3,
+
+	"icons": {
+		"16": "./icons/icon16.png",
+		"48": "./icons/icon48.png",
+		"128": "./icons/icon128.png" },
+
+	"content_scripts": [{
+		"matches": ["https://intranet.upv.es/pls/soalu/sic_asi.listado_notas_asi?*"],
+		"js": ["background.js"]}],
+
+	"permissions": ["storage"],
+	"action": {
+		"default_popup": "popup.html"
+	}
+}
