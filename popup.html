@@ -1,16 +1,29 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-    <link rel="stylesheet" href="button.css">
-  </head>
-  <body>
-    <h1>UPV Notas</h1>
-    
-    <textarea name="text" cols="40" rows="15" id="textarea" placeholder="Introduzca los nombres con el siguiente formato: Apellido Apellido, Nombre1 / Apellido Apellido, Nombre2"></textarea> <br>
-    <button id="button">Guardar</button>
-    <p id="guardado"></p>
-    <script src="popup.js"></script>
 
-  </body>
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+  <link rel="stylesheet" href="popup.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css">
+</head>
+
+<body>
+  <h1>UPV Notas</h1>
+
+  <div id = "lista"></div>
+
+  <form class="elemento-lista">
+    <div class="izquierda">
+      <div id="adder-input-color-wrapper" class="input-color-wrapper">
+        <input type="color" id="adder-input-color" class="input-color">
+      </div>
+      <input type="text" id="adder-input-text" placeholder="Introduzca un nombre">
+    </div>
+    <button type="button" id="adder-btn">Añadir</button>
+  </form>
+  
+  <script src="popup.js"></script>
+
+</body>
+
 </html>
