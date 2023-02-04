@@ -1,7 +1,7 @@
 {
 	"name": "UPV Notas",
-	"description": "Mejora la visualizacion de las calificaciones en el apartado de notas de la intranet. (Extension no oficial)",
-	"version": "1.0",
+	"description": "Mejora la visualizacion de las calificaciones en el apartado de notas de la intranet",
+	"version": "1.1",
 	"manifest_version": 3,
 
 	"icons": {
