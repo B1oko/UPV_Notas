@@ -7,17 +7,17 @@ var filas = tbody.rows;
 var estadisticas = { media: 0, aprobados: 0, suspendidos: 0 };
 var listaSeguimiento = [""];
 
-// Modificamos la tabla sustituyendo las comas por puntos y 
-
-try{
-	chrome.storage.sync.get(['text'], function(result) {
-		listaSeguimiento = result.text;
-		if (typeof listaSeguimiento === 'undefined'){ listaSeguimiento = [''] }
-		colorearListaSeguimiento();
-	});
-} catch(err) {
-	console.log(err);
-}
+// Cargamos la lista de seguimiento
+chrome.storage.sync.get(['listaSeguimiento'], function (result) {
+	listaSeguimiento = result.listaSeguimiento;
+	colorearListaSeguimiento();
+});
+// Creamos un listener para actualizar los cambios
+chrome.storage.onChanged.addListener((changes, namespace) => {
+	console.log("coloreando");
+	listaSeguimiento = changes["listaSeguimiento"]["newValue"];
+	colorearListaSeguimiento();
+  });
 
 // Ordenamos la tabla
 thead.rows[0].insertCell(0).outerHTML = "<th></th>";
@@ -110,6 +110,7 @@ function ordenarTabla (n) {
 
 		filas[i].getElementsByTagName("TD")[0].innerHTML = i+1;
 		filas[i].style.backgroundColor = (i % 2) ? 'white' : '#F0F0F0';
+		
 	}
 
 	// Coloreamos usuario en la lista de seguimiento
@@ -121,10 +122,12 @@ function ordenarTabla (n) {
 function colorearListaSeguimiento () {
 
 	for (i = 1; i < (filas.length); i++){
+		filas[i].style.backgroundColor = (i % 2) ? 'white' : '#F0F0F0';
+		filas[i].style.color = '#818181';
 		// Vemos si el nombre esta en la lista de seguimiento
-		for (nombre of listaSeguimiento){
-			if (filas[i].getElementsByTagName("TD")[1].innerHTML == nombre.trim()){
-				filas[i].style.backgroundColor = '#8BC34A';
+		for (elemento of listaSeguimiento){
+			if (filas[i].getElementsByTagName("TD")[1].innerHTML == elemento.nombre){
+				filas[i].style.backgroundColor = elemento.color;
 				filas[i].style.color = 'black';
 				break;
 			}
